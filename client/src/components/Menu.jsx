@@ -1,8 +1,6 @@
 import React from "react";
 
-const Menu = ({cat}) => {
-
-
+const Menu = ({ cat }) => {
 
   const posts = [
     {

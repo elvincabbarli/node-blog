@@ -1,26 +1,34 @@
 import express from "express";
-import postRoutes from './routes/postsRoute.js'
-import userRoutes from './routes/usersRoute.js'
-import authRoutes from './routes/authRoute.js'
-const app = express()
-import cors from 'cors'
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
+import multer from "multer";
 
-app.use(express.json())
-app.use(cors())
-app.use(cookieParser())
-app.use('/api/posts', postRoutes)
-app.use('/api/auth', authRoutes)
-app.use('/api/users', userRoutes)
+const app = express();
 
-app.get('/' , (req,res) => {
-    res.json('Hey')
-})
+app.use(express.json());
+app.use(cookieParser());
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "../client/public/upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
+});
 
+const upload = multer({ storage });
 
-app.listen(8000, () => {
-    console.log('DB connected')
-})
+app.post("/api/upload", upload.single("file"), function (req, res) {
+  const file = req.file;
+  res.status(200).json(file.filename);
+});
 
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
-
+app.listen(8800, () => {
+  console.log("Connected!");
+});

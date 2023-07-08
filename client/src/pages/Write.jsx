@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
 const Write = () => {
-
-  const [value, setValue] = useState();
 
 
   return (
@@ -14,13 +12,13 @@ const Write = () => {
         <input
           type="text"
           placeholder="Title"
+
         />
         <div className="editorContainer">
           <ReactQuill
             className="editor"
             theme="snow"
-            value={value}
-            onChange={setValue}
+
           />
         </div>
       </div>
@@ -38,13 +36,14 @@ const Write = () => {
             type="file"
             id="file"
             name=""
+
           />
           <label className="file" htmlFor="file">
             Upload Image
           </label>
           <div className="buttons">
             <button>Save as a draft</button>
-            <button>Publish</button>
+            <button >Publish</button>
           </div>
         </div>
         <div className="item">
@@ -52,9 +51,11 @@ const Write = () => {
           <div className="cat">
             <input
               type="radio"
+
               name="cat"
               value="art"
               id="art"
+
             />
             <label htmlFor="art">Art</label>
           </div>
