@@ -8,7 +8,6 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    id: null
   });
   const [err, setError] = useState(null);
 
@@ -32,13 +31,6 @@ const Register = () => {
     <div className="auth">
       <h1>Register</h1>
       <form>
-      <input
-          required
-          type="number"
-          placeholder="id"
-          name="id"
-          onChange={handleChange}
-        />
         <input
           required
           type="text"
